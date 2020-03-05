@@ -37,8 +37,8 @@ class Integer : public Swappable<Integer>, public Comparable<Integer> { public:
 		if (bits!=nullptr) delete[] bits;
 	}
 
-	Integer(int length, const string& str, int party = PUBLIC);
-	Integer(int length, long long input, int party = PUBLIC);
+	Integer(int length, const string& str, int party = PUBLIC, bool validate=false);
+	Integer(int length, long long input, int party = PUBLIC, bool validate=false);
 	Integer() :length(0),bits(nullptr){ }
 
 //Comparable
@@ -52,6 +52,7 @@ class Integer : public Swappable<Integer>, public Comparable<Integer> { public:
 	int size() const;
 	template<typename O>
 	O reveal(int party=PUBLIC) const;
+        string reveal_unsigned(int party=PUBLIC, int base=10) const;
 
 	Integer abs() const;
 	Integer& resize(int length, bool signed_extend = true);
@@ -67,6 +68,7 @@ class Integer : public Swappable<Integer>, public Comparable<Integer> { public:
 	Integer operator+(const Integer& rhs)const;
 	Integer operator-(const Integer& rhs)const;
 	Integer operator-()const;
+        Integer operator~()const;
 	Integer operator*(const Integer& rhs)const;
 	Integer operator/(const Integer& rhs)const;
 	Integer operator%(const Integer& rhs)const;
